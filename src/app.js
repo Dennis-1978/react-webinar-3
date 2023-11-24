@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { getNumberOfSelections } from './services/services';
+
 import './styles.css';
 
 /**
@@ -32,7 +34,7 @@ function App({ store }) {
                                 <div className="Item-title">
                                     {item.title}
                                     {item.selectedCount &&
-                                        ` | Выделяли ${item.selectedCount} раз(а)`}
+                                        ` | Выделяли ${getNumberOfSelections(item.selectedCount)}`}
                                 </div>
                                 <div className="Item-actions">
                                     <button
