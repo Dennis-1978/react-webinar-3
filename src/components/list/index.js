@@ -12,7 +12,10 @@ function List({ list, addToBasket }) {
 				<div
 					key={item.code}
 					className='List__item'>
-					<Item item={item} addToBasket={addToBasket}/>
+					<Item
+						item={item}
+						addToBasket={addToBasket}
+					/>
 				</div>
 			))}
 		</div>

@@ -5,7 +5,7 @@ import { internationalNumber } from "../../utils";
 
 import "./style.css";
 
-function Item({item, addToBasket}) {
+function Item({ item, addToBasket }) {
 	return (
 		<div className='Item'>
 			<div className='Item__code'>{item.code}</div>
@@ -27,11 +27,7 @@ Item.propTypes = {
 		code: PropTypes.number,
 		title: PropTypes.string,
 	}).isRequired,
-	onDelete: PropTypes.func,
-};
-
-Item.defaultProps = {
-	onDelete: () => {},
+	addToBasket: PropTypes.func,
 };
 
 export default React.memo(Item);

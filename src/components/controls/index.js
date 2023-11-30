@@ -5,12 +5,15 @@ import Cart from "../cart";
 
 import "./style.css";
 
-function Controls(props) {
+function Controls({ count }) {
 	return (
 		<div className='Controls'>
-			<Cart quantity={props.order} price={props.totalPrice}/>
+			<Cart
+				count={count}
+				price={0}
+			/>
 			<button
-				onClick={() => props.handlerBasketShow()}
+				// onClick={() => props.handlerBasketShow()}
 				className='Controls__btn'>
 				Перейти
 			</button>
@@ -19,6 +22,7 @@ function Controls(props) {
 }
 
 Controls.propTypes = {
+	count: PropTypes.number,
 	onAdd: PropTypes.func,
 };
 

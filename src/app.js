@@ -13,9 +13,9 @@ import PageLayout from "./components/page-layout";
 function App({ store }) {
 	const list = store.getState().list;
 	const order = store.getState().order;
-
+	
 	const callbacks = {
-		addItem: useCallback(
+		addToBasket: useCallback(
 			item => {
 				store.addToBasket(item);
 			},
@@ -27,10 +27,10 @@ function App({ store }) {
 		<>
 			<PageLayout>
 				<Head title='Магазин' />
-				<Controls />
+				<Controls count={order.length}/>
 				<List
 					list={list}
-					addToBasket={callbacks.addItem}
+					addToBasket={callbacks.addToBasket}
 				/>
 			</PageLayout>
 		</>

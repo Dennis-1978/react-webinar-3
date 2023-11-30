@@ -51,34 +51,35 @@ class Store {
 	 */
 	addToBasket(item) {
 		// проверяем был ли уже добавлен такой товар
-		const itemIndex = this.state.order.findIndex(
+		const indexItem = this.state.order.findIndex(
 			orderItem => orderItem.code === item.code,
 		);
-		// console.log(itemIndex)
-		if (itemIndex < 0) {
+
+        if (indexItem < 0) {
 			const newItem = {
 				...item,
 				quantity: 1,
 			};
 
-			this.setState({ ...this.state, order: [newItem] });
+			this.setState({ ...this.state, order: [...this.state.order, newItem] });
+
 		} else {
-			const newOrder = this.state.order.map((orderItem, index) => {
-				if (index === itemIndex) {
-					return {
-						...orderItem,
-						quantity: orderItem.quantity + 1,
-					};
-				} else {
-					return orderItem;
-				}
-			});
-			console.dir(this.state.order);
-			this.setState({
-				...this.state,
-				order: [...this.state.order, ...newOrder],
-			});
-		}
+            const newOrder = this.state.order.map((orderItem, index) => {
+                if (indexItem === index) {
+                    return {
+                        ...orderItem,
+                        quantity: orderItem.quantity + 1
+                    }
+                } else {
+                    return orderItem;
+                }
+            })
+
+            this.setState({
+                ...this.state,
+                order: [...newOrder]
+            })
+        }
 	}
 
 	/**
