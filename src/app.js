@@ -15,7 +15,8 @@ function App({ store }) {
   const list = store.getState().list;
   const order = store.getState().order;
   const isBasketShow = store.getState.isBasketShow;
-
+  const price = store.getState().totalPrice;
+  
   const callbacks = {
     addToBasket: useCallback(
       (item) => {
@@ -35,6 +36,7 @@ function App({ store }) {
         <Controls
           count={order.length}
           handleBasketShow={callbacks.handleBasketShow}
+          price={price}
         />
         <List list={list} addToBasket={callbacks.addToBasket} />
       </PageLayout>

@@ -12,6 +12,7 @@ class Store {
       ...this.state,
       order: [],
       isBasketShow: false,
+			totalPrice: 0
     });
   }
 
@@ -56,6 +57,20 @@ class Store {
     });
   }
 
+	/**
+	 * Расчитывает общую стоимость корзины товаров
+	 */
+	calculatePrice() {
+		const total = this.state.order.reduce((sum, elem) => {
+			return sum + elem.price * elem.quantity;
+		}, 0)
+
+		this.setState({
+			...this.state,
+			totalPrice: total
+		})
+	}
+
   /**
    * Добавление товара в корзину
    * @param item {Object} Выбранный для добавления товар
@@ -90,6 +105,8 @@ class Store {
         order: [...newOrder],
       });
     }
+
+		this.calculatePrice();
   }
 
   /**

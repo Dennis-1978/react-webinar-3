@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Cart from "../cart";
+import Total from "../total";
 
 import "./style.css";
 
-function Controls({ count, handleBasketShow }) {
+function Controls({ count, handleBasketShow, price }) {
 	return (
 		<div className='Controls'>
-			<Cart
+			<Total
 				count={count}
-				price={0}
+				price={price}
 			/>
 			<button
 				onClick={() => handleBasketShow()}
@@ -23,6 +23,7 @@ function Controls({ count, handleBasketShow }) {
 
 Controls.propTypes = {
 	count: PropTypes.number,
+	price: PropTypes.number,
 	handleBasketShow: PropTypes.func,
 };
 
