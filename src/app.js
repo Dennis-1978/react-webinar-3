@@ -11,30 +11,36 @@ import PageLayout from "./components/page-layout";
  * @returns {React.ReactElement}
  */
 function App({ store }) {
-	const list = store.getState().list;
-	const order = store.getState().order;
-	
-	const callbacks = {
-		addToBasket: useCallback(
-			item => {
-				store.addToBasket(item);
-			},
-			[store],
-		),
-	};
 
-	return (
-		<>
-			<PageLayout>
-				<Head title='Магазин' />
-				<Controls count={order.length}/>
-				<List
-					list={list}
-					addToBasket={callbacks.addToBasket}
-				/>
-			</PageLayout>
-		</>
-	);
+  const list = store.getState().list;
+  const order = store.getState().order;
+  const isBasketShow = store.getState.isBasketShow;
+
+  const callbacks = {
+    addToBasket: useCallback(
+      (item) => {
+        store.addToBasket(item);
+      },
+      [store]
+    ),
+    handleBasketShow: useCallback(() => {
+      store.handleBasketShow();
+    }, []),
+  };
+
+  return (
+    <>
+      <PageLayout>
+        <Head title="Магазин" />
+        <Controls
+          count={order.length}
+          handleBasketShow={callbacks.handleBasketShow}
+        />
+        <List list={list} addToBasket={callbacks.addToBasket} />
+      </PageLayout>
+      {isBasketShow && 'Hello'}
+    </>
+  );
 }
 
 export default App;

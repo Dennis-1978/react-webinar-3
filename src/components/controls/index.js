@@ -5,7 +5,7 @@ import Cart from "../cart";
 
 import "./style.css";
 
-function Controls({ count }) {
+function Controls({ count, handleBasketShow }) {
 	return (
 		<div className='Controls'>
 			<Cart
@@ -13,7 +13,7 @@ function Controls({ count }) {
 				price={0}
 			/>
 			<button
-				// onClick={() => props.handlerBasketShow()}
+				onClick={() => handleBasketShow()}
 				className='Controls__btn'>
 				Перейти
 			</button>
@@ -23,11 +23,11 @@ function Controls({ count }) {
 
 Controls.propTypes = {
 	count: PropTypes.number,
-	onAdd: PropTypes.func,
+	handleBasketShow: PropTypes.func,
 };
 
 Controls.defaultProps = {
-	onAdd: () => {},
+	handleBasketShow: () => {},
 };
 
 export default React.memo(Controls);
