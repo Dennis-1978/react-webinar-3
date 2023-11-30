@@ -4,22 +4,32 @@
   transition: background-color 1s;
 }
 
-.Item_selected {
-  background: #75aaf1;
-  color: #fff;
-}
-
-.Item-code {
+.Item__code {
   padding: 20px 10px 20px 20px;
 }
 
-.Item-title {
+.Item__title {
   width: 100%;
   padding: 20px 10px;
+  font-size: 16px;
 }
 
-.Item-actions {
+.Item__actions {
   display: flex;
   justify-content: flex-end;
-  padding: 20px 20px 20px 10px;
+  padding: 20px 20px 20px 20px;
+}
+
+.Item__price {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 18px;
+}
+
+.Item__btn {
+    width: 80px;
+    height: 21px;
+    cursor: pointer;
 }
