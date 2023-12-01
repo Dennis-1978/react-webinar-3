@@ -4,6 +4,7 @@ import List from "./components/list";
 import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
+import Modal from "./modal";
 
 /**
  * Приложение
@@ -11,12 +12,11 @@ import PageLayout from "./components/page-layout";
  * @returns {React.ReactElement}
  */
 function App({ store }) {
-
   const list = store.getState().list;
   const order = store.getState().order;
-  const isBasketShow = store.getState.isBasketShow;
+  const isBasketShow = store.getState().isBasketShow;
   const price = store.getState().totalPrice;
-  
+
   const callbacks = {
     addToBasket: useCallback(
       (item) => {
@@ -26,7 +26,7 @@ function App({ store }) {
     ),
     handleBasketShow: useCallback(() => {
       store.handleBasketShow();
-    }, []),
+    }, [store]),
   };
 
   return (
@@ -40,7 +40,17 @@ function App({ store }) {
         />
         <List list={list} addToBasket={callbacks.addToBasket} />
       </PageLayout>
-      {isBasketShow && 'Hello'}
+      {isBasketShow && (
+        <Modal
+          head={
+            <Head title="Корзина">
+              <button onClick={() => callbacks.handleBasketShow()}>
+                Закрытие
+              </button>
+            </Head>
+          }
+        />
+      )}
     </>
   );
 }

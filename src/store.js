@@ -12,7 +12,7 @@ class Store {
       ...this.state,
       order: [],
       isBasketShow: false,
-			totalPrice: 0
+      totalPrice: 0,
     });
   }
 
@@ -52,24 +52,24 @@ class Store {
    */
   handleBasketShow() {
     this.setState({
-			...this.state,
+      ...this.state,
       isBasketShow: !this.state.isBasketShow,
     });
   }
 
-	/**
-	 * Расчитывает общую стоимость корзины товаров
-	 */
-	calculatePrice() {
-		const total = this.state.order.reduce((sum, elem) => {
-			return sum + elem.price * elem.quantity;
-		}, 0)
+  /**
+   * Расчитывает общую стоимость корзины товаров
+   */
+  calculatePrice() {
+    const total = this.state.order.reduce((sum, elem) => {
+      return sum + elem.price * elem.quantity;
+    }, 0);
 
-		this.setState({
-			...this.state,
-			totalPrice: total
-		})
-	}
+    this.setState({
+      ...this.state,
+      totalPrice: total,
+    });
+  }
 
   /**
    * Добавление товара в корзину
@@ -106,7 +106,7 @@ class Store {
       });
     }
 
-		this.calculatePrice();
+    this.calculatePrice();
   }
 
   /**
