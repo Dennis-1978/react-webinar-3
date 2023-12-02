@@ -4,7 +4,8 @@ import List from "./components/list";
 import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
-import Modal from "./modal";
+import Modal from "./components/modal";
+import TotalBasket from "./components/totalBasket";
 
 /**
  * Приложение
@@ -27,6 +28,12 @@ function App({ store }) {
     handleBasketShow: useCallback(() => {
       store.handleBasketShow();
     }, [store]),
+    deleteOrderItem: useCallback(
+      (code) => {
+        store.deleteOrderItem(code);
+      },
+      [store]
+    ),
   };
 
   return (
@@ -38,7 +45,11 @@ function App({ store }) {
           handleBasketShow={callbacks.handleBasketShow}
           price={price}
         />
-        <List list={list} addToBasket={callbacks.addToBasket} />
+        <List
+          list={list}
+          label="Добавить"
+          addToBasket={callbacks.addToBasket}
+        />
       </PageLayout>
       {isBasketShow && (
         <Modal
@@ -49,7 +60,15 @@ function App({ store }) {
               </button>
             </Head>
           }
-        />
+          list={
+            <List
+              list={order}
+              deleteOrderItem={callbacks.deleteOrderItem}
+              label="Удалить"
+            />
+          }
+          total={<TotalBasket price={price} />}
+        ></Modal>
       )}
     </>
   );

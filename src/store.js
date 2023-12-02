@@ -122,6 +122,20 @@ class Store {
   }
 
   /**
+   * Удаление заказа из корзины по коду
+   * @param code
+   */
+  deleteOrderItem(code) {
+    this.setState({
+      ...this.state,
+      // Новый список заказов
+      order: this.state.order.filter((item) => item.code !== code),
+    });
+
+    this.calculatePrice();
+  }
+
+  /**
    * Выделение записи по коду
    * @param code
    */

@@ -1,0 +1,14 @@
+.TotalBasket {
+  margin: 20px 120px 0 0;
+  text-align: right;
+}
+
+.TotalBasket-descr {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.TotalBasket-price {
+  font-weight: 700;
+  margin-left: 53px;
+}

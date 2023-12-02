@@ -4,12 +4,18 @@ import { cn as bem } from "@bem-react/classname";
 
 import "./style.css";
 
-function Modal({ head }) {
+function Modal({ head, list, total }) {
   const cn = bem("Modal");
 
   return (
     <div className={cn()}>
-      <div className={cn("content")}>{head}</div>
+      <div className={cn("content")}>
+        {head}
+        <div className={cn("list")}>
+          {list}
+          <div className={cn("total")}>{total}</div>
+        </div>
+      </div>
     </div>
   );
 }

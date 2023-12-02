@@ -7,12 +7,18 @@
 }
 
 .Head-title {
-	font-size: 32px;
-	font-weight: 700;
+  font-size: 32px;
+  font-weight: 700;
   margin: 0;
   padding-left: 20px;
 }
 
 .Head div {
   padding-right: 32px;
+}
+
+.Head button {
+  width: 76px;
+  height: 21px;
+  cursor: pointer;
 }

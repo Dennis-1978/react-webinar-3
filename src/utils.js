@@ -25,11 +25,7 @@ export function plural(value, variants = {}, locale = "ru-RU") {
  */
 export function internationalNumber(
 	value,
-	config = {
-		style: "currency",
-		currency: "RUB",
-		maximumSignificantDigits: 10,
-	},
+	config = {},
 	locale = "ru",
 ) {
 	const price = new Intl.NumberFormat(locale, config).format(value);
