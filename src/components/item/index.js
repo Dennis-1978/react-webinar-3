@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import { cn as bem } from "@bem-react/classname";
 
@@ -14,6 +14,12 @@ function Item(props) {
   ) : (
     ""
   );
+
+  visible
+    ? useEffect(() => {
+        document.body.style.overflow = "hidden";
+      }, [])
+    : "";
 
   return (
     <div className={cn()}>
