@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { cn as bem } from "@bem-react/classname";
 
@@ -46,6 +46,8 @@ Item.propTypes = {
   item: PropTypes.shape({
     code: PropTypes.number,
     title: PropTypes.string,
+    price: PropTypes.number,
+    quantity: PropTypes.number,
   }).isRequired,
   addToBasket: PropTypes.func,
 };

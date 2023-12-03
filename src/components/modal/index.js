@@ -21,7 +21,9 @@ function Modal({ head, list, total }) {
 }
 
 Modal.propTypes = {
-  header: PropTypes.node,
+  head: PropTypes.node,
+  list: PropTypes.node,
+  total: PropTypes.node,
 };
 
 export default React.memo(Modal);
