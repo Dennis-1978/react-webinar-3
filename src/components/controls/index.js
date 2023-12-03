@@ -9,23 +9,16 @@ import "./style.css";
 function Controls({ count, handleBasketShow, price }) {
   const cn = bem("Controls");
 
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const element = ref.current;
-
-    !count
-      ? element.setAttribute("disabled", false)
-      : element.removeAttribute("disabled", null);
-  }, [count]);
-
+  let isEnable = true;
+  count ? isEnable = false : isEnable; 
+ 
   return (
     <div className={cn()}>
       <Total count={count} price={price} />
       <button
         onClick={() => handleBasketShow()}
         className={cn("btn")}
-        ref={ref}
+        disabled={isEnable}
       >
         Перейти
       </button>
