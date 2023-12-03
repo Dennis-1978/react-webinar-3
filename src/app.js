@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import List from "./components/list";
 import Controls from "./components/controls";
@@ -35,6 +35,13 @@ function App({ store }) {
       [store]
     ),
   };
+
+  // если корзина открыта и список заказов пуст - закрытие корзины
+  useEffect(() => {
+    if (isBasketShow && order.length === 0) {
+      callbacks.handleBasketShow();
+    }
+  }, [order]);
 
   return (
     <>

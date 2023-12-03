@@ -30,7 +30,7 @@ function List({ list, addToBasket, deleteOrderItem, label }) {
 List.propTypes = {
   list: PropTypes.arrayOf(
     PropTypes.shape({
-      code: PropTypes.number
+      code: PropTypes.number,
     })
   ).isRequired,
   addToBasket: PropTypes.func,

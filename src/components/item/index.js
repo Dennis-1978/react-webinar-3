@@ -9,6 +9,12 @@ import "./style.css";
 function Item(props) {
   const cn = bem("Item");
 
+  const visible = props.item.quantity ? (
+    <div className={cn("quantity")}>{props.item.quantity} шт</div>
+  ) : (
+    ""
+  );
+
   return (
     <div className={cn()}>
       <div className={cn("code")}>{props.item.code}</div>
@@ -20,8 +26,7 @@ function Item(props) {
           maximumSignificantDigits: 10,
         })}
       </div>
-      {props.item.quantity ? <div className={cn("quantity")}>{props.item.quantity} шт</div> : ''}
-
+      {visible}
       <div className={cn("actions")}>
         <button onClick={props.func} className={cn("btn")}>
           {props.label}

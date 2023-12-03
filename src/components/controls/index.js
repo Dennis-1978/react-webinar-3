@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { cn as bem } from "@bem-react/classname";
 
@@ -10,8 +10,8 @@ function Controls({ count, handleBasketShow, price }) {
   const cn = bem("Controls");
 
   let isEnable = true;
-  count ? isEnable = false : isEnable; 
- 
+  count ? (isEnable = false) : isEnable;
+
   return (
     <div className={cn()}>
       <Total count={count} price={price} />
