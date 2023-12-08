@@ -6,7 +6,6 @@ import BasketTool from "../../components/basket-tool";
 import List from "../../components/list";
 import useStore from "../../store/use-store";
 import useSelector from "../../store/use-selector";
-import Footer from "../../components/footer";
 import Pagination from "../../components/pagination";
 
 function Main() {
@@ -20,7 +19,7 @@ function Main() {
     list: state.catalog.list,
     amount: state.basket.amount,
     sum: state.basket.sum,
-    count: state.catalog.count
+    countGoods: state.catalog.countGoods
   }));
 
   const callbacks = {
@@ -54,9 +53,7 @@ function Main() {
         sum={select.sum}
       />
       <List list={select.list} renderItem={renders.item} />
-      <Footer>
-        <Pagination totalPage={select.count}/>
-      </Footer>
+      <Pagination countGoods={select.countGoods}/>
     </PageLayout>
   );
 }

@@ -1,57 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { cn as bem } from "@bem-react/classname";
+
+import { changePaginate } from "../../utils";
 
 import "./style.css";
 
-function Pagination({ totalPage }) {
+function Pagination({ countGoods, goodsPerPage = 10 }) {
   const cn = bem("Pagination");
 
-  const onClick = (event) => setCurrentPage(Number(event.target.innerHTML));
-
   const [currentPage, setCurrentPage] = useState(1);
+  const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
 
-  const arr = [1, 2, 3];
-  const dots = "...";
+  const pages = useMemo(
+    () => Math.round(countGoods / goodsPerPage),
+    [countGoods]
+  );
 
-  let content;
+  
 
-  if (currentPage < 3) {
-    content = (
-      <>
-        {arr.map((_, index) => (
+  useEffect(() => {
+    changePaginate(currentPage, pages, setArrOfCurrButtons)
+  }, [currentPage, pages]);
+
+  return (
+    <div className={cn()}>
+      {arrOfCurrButtons.map((page, i) => {
+        return (
           <button
-            onClick={onClick}
-            className={index + 1 === currentPage ? cn("active") : cn("button")}
-            key={index}
+            onClick={(e) => setCurrentPage(page)}
+            className={
+              currentPage === page && typeof page === "number"
+                ? cn("active")
+                : cn("button")
+            }
+            key={i}
           >
-            {index + 1}
+            {page}
           </button>
-        ))}
-        {dots}
-        <button>{totalPage}</button>
-      </>
-    );
-  }
-
-  if (currentPage === 3) {
-    content = (
-      <>
-        {arr.concat(4).map((_, index) => (
-          <button
-            onClick={onClick}
-            className={index + 1 === currentPage ? cn("active") : cn("button")}
-            key={index}
-          >
-            {index + 1}
-          </button>
-        ))}
-        {dots}
-        <button>{totalPage}</button>
-      </>
-    );
-  } 
-
-  return <div className={cn("")}>{content}</div>;
+        );
+      })}
+    </div>
+  );
 }
 
 export default React.memo(Pagination);

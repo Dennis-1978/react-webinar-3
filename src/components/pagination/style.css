@@ -9,7 +9,7 @@
   border: none;
   background-color: #ffffff;
   cursor: pointer;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .Pagination-button:hover {
