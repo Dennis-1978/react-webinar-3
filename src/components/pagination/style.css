@@ -2,14 +2,19 @@
   display: flex;
   justify-content: end;
   padding: 22px;
-  gap: 2px;
+  gap: 0px;
 }
 
 .Pagination-button {
   border: none;
+  height: 20px;
   background-color: #ffffff;
+  font-size: 16px; 
   cursor: pointer;
-  /* text-align: center; */
+}
+
+.Pagination-span {
+  color: #CCCCCC;
 }
 
 .Pagination-button:hover {
@@ -18,5 +23,7 @@
 
 .Pagination-active {
   background-color: #0087E9;
+  color: #ffffff;
+  font-size: 16px;
   border: none;
 }

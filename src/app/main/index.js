@@ -11,16 +11,18 @@ import Pagination from "../../components/pagination";
 function Main() {
   const store = useStore();
 
-  useEffect(() => {
-    store.actions.catalog.load();
-  }, []);
-
   const select = useSelector((state) => ({
     list: state.catalog.list,
     amount: state.basket.amount,
     sum: state.basket.sum,
-    countGoods: state.catalog.countGoods
+    totalGoods: state.catalog.totalGoods,
+    skip: state.catalog.skip,
+    limit: state.catalog.limit,
   }));
+
+  useEffect(() => {
+    store.actions.catalog.load();
+  }, [select.skip]);
 
   const callbacks = {
     // Добавление в корзину
@@ -31,6 +33,13 @@ function Main() {
     // Открытие модалки корзины
     openModalBasket: useCallback(
       () => store.actions.modals.open("basket"),
+      [store]
+    ),
+    // Пагинация
+    changeSkip: useCallback(
+      (currentPage) => {
+        store.actions.catalog.changeSkip((currentPage - 1) * select.limit);
+      },
       [store]
     ),
   };
@@ -53,7 +62,11 @@ function Main() {
         sum={select.sum}
       />
       <List list={select.list} renderItem={renders.item} />
-      <Pagination countGoods={select.countGoods}/>
+      <Pagination
+        totalGoods={select.totalGoods}
+        changeSkip={callbacks.changeSkip}
+        goodsPerPage={select.limit}
+      />
     </PageLayout>
   );
 }

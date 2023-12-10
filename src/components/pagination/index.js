@@ -1,33 +1,34 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import PropTypes from "prop-types";
 import { cn as bem } from "@bem-react/classname";
 
 import { changePaginate } from "../../utils";
 
 import "./style.css";
 
-function Pagination({ countGoods, goodsPerPage = 10 }) {
+function Pagination({ totalGoods, goodsPerPage, changeSkip }) {
   const cn = bem("Pagination");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [arrOfCurrButtons, setArrOfCurrButtons] = useState([]);
+  const [arrCurrentPages, setArrCurrentPages] = useState([]);
 
-  const pages = useMemo(
-    () => Math.round(countGoods / goodsPerPage),
-    [countGoods]
-  );
+  const pages = Math.ceil(totalGoods / goodsPerPage);
 
-  
+  useCallback(() => {
+    return pages;
+  },[]);
 
   useEffect(() => {
-    changePaginate(currentPage, pages, setArrOfCurrButtons)
-  }, [currentPage, pages]);
+    changePaginate(currentPage, pages, setArrCurrentPages);
+    changeSkip(currentPage);
+  }, [currentPage, totalGoods]);
 
   return (
     <div className={cn()}>
-      {arrOfCurrButtons.map((page, i) => {
+      {arrCurrentPages.map((page, i) => {
         return (
           <button
-            onClick={(e) => setCurrentPage(page)}
+            onClick={() => setCurrentPage(page)}
             className={
               currentPage === page && typeof page === "number"
                 ? cn("active")
@@ -42,5 +43,11 @@ function Pagination({ countGoods, goodsPerPage = 10 }) {
     </div>
   );
 }
+
+Pagination.propTypes = {
+  totalGoods: PropTypes.number.isRequired,
+  goodsPerPage: PropTypes.number,
+  changeSkip: PropTypes.func.isRequired
+};
 
 export default React.memo(Pagination);

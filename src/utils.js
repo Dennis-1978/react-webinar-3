@@ -49,26 +49,27 @@ export function changePaginate(current, pages, func) {
   if (typeof current !== "number") return;
 
   let tempArray = [...array];
+  const dots = <span className="Pagination-span">...</span>;
 
   if (current >= 1 && current < 3) {
-    tempArray = [1, 2, 3, "...", array.length];
+    tempArray = [1, 2, 3, dots, array.length];
   } else if (current === 3) {
     const sliced = array.slice(0, 4);
-    tempArray = [...sliced, "...", array.length];
+    tempArray = [...sliced, dots, array.length];
   } else if (current >= 4 && current < array.length - 1) {
     const beforeToCurrent = array.slice(current - 2, current);
     const currentToAfter = array.slice(current, current + 1);
     tempArray = [
       1,
-      "...",
+      dots,
       ...beforeToCurrent,
       ...currentToAfter,
-      "...",
+      dots,
       array.length,
     ];
   } else {
     const sliced = array.slice(array.length - 3);
-    tempArray = [1, "...", ...sliced];
+    tempArray = [1, dots, ...sliced];
   }
 
   return func(tempArray);
